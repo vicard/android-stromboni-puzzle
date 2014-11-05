@@ -154,6 +154,7 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                                     LOCK_ZONE_TOP + h * PUZZLE_HEIGHT,//MAX_PUZZLE_PIECE_SIZE,
                                     LOCK_ZONE_LEFT + w * PUZZLE_WIDTH + PUZZLE_WIDTH,  //MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
                                     LOCK_ZONE_TOP + h * PUZZLE_HEIGHT + PUZZLE_HEIGHT);//MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
+                            puzzle.setPieceLocked(targetPiece, true);
                             cpt++;
                         } else{
                             if(cptx>1){
@@ -227,6 +228,7 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
 
                         // Trigger puzzle piece picked up
                         puzzle.onJigsawEventPieceGrabbed(found, place.left, place.top);
+
                     }
                 }
                 break;

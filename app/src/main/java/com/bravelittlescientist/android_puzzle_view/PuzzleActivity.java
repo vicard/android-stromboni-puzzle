@@ -35,4 +35,10 @@ public class PuzzleActivity extends Activity {
         super.onSaveInstanceState(outState);
         puzzleSurface.getThread().saveState(outState);
     }
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+    }
 }
