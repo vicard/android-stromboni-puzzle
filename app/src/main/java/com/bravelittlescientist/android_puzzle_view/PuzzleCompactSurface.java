@@ -20,6 +20,8 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
     private int LOCK_ZONE_LEFT = 200; //Décalage de l'image en x
     private int LOCK_ZONE_TOP = 200; //Decalage de l'image en y
 
+    private int NB_PIECES_TO_REPLACE = 5;
+
     private JigsawPuzzle puzzle;
     private BitmapDrawable[] scaledSurfacePuzzlePieces;
     private Rect[] scaledSurfaceTargetBounds;
@@ -110,7 +112,10 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
         }
         int cpt=0;
         int nbPieces = puzzle.getNbPieces();
-        
+        int nbPiecesFix = nbPieces-NB_PIECES_TO_REPLACE;
+        Random r2 = new Random();
+        int nbPiecesRestantes = NB_PIECES_TO_REPLACE;
+
 
 
             for (int w = 0; w < dimensions[2]; w++) {
@@ -123,12 +128,15 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                             LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
                             LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
 
-                    if (cpt<5) { // Fixe les 5 premières pièces
-                    scaledSurfacePuzzlePieces[targetPiece].setBounds(LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
-                    cpt++;
+                    if (cpt<nbPiecesFix) { // 5 pieces seront placées de façons aléatoire
+                        if(r2.nextInt(2)==1 || nbPiecesRestantes==0) {
+                            scaledSurfacePuzzlePieces[targetPiece].setBounds(LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE,
+                                    LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE,
+                                    LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
+                                    LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
+
+                            cpt++;
+                        } else nbPiecesRestantes--;
 
                      }
                  }
