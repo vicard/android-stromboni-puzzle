@@ -129,6 +129,8 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                     topLeftY + PUZZLE_HEIGHT); //MAX_PUZZLE_PIECE_SIZE);//Mettre la bonne position ici pour chaque piece
         }
         int cpt=0;
+        int cptx=0;
+        int cpty=0;
         int nbPieces = puzzle.getNbPieces();
         int nbPiecesFix = nbPieces-NB_PIECES_TO_REPLACE;
         Random r2 = new Random();
@@ -153,9 +155,34 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                                     LOCK_ZONE_LEFT + w * PUZZLE_WIDTH + PUZZLE_WIDTH,  //MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
                                     LOCK_ZONE_TOP + h * PUZZLE_HEIGHT + PUZZLE_HEIGHT);//MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
                             cpt++;
-                        } else nbPiecesRestantes--;
+                        } else{
+                            if(cptx>1){
+                                cpty++;
+                                cptx=0;
+                            }
+                            scaledSurfacePuzzlePieces[targetPiece].setBounds(
+                                    IMAGE_WIDTH+LOCK_ZONE_LEFT+LOCK_ZONE_LEFT+(PUZZLE_WIDTH+LOCK_ZONE_LEFT)*cptx,
+                                    LOCK_ZONE_TOP+(PUZZLE_HEIGHT+LOCK_ZONE_TOP)*cpty,
+                                    IMAGE_WIDTH+LOCK_ZONE_LEFT+LOCK_ZONE_LEFT + PUZZLE_WIDTH+(PUZZLE_WIDTH+LOCK_ZONE_LEFT)*cptx,
+                                    LOCK_ZONE_TOP + PUZZLE_HEIGHT+(PUZZLE_HEIGHT+LOCK_ZONE_TOP)*cpty);
+                            cptx++;
+                            nbPiecesRestantes--;
+                        }
 
                      }
+                    else {
+                        if(cptx>1){
+                            cpty++;
+                            cptx=0;
+                        }
+                        scaledSurfacePuzzlePieces[targetPiece].setBounds(
+                                IMAGE_WIDTH+LOCK_ZONE_LEFT+LOCK_ZONE_LEFT+(PUZZLE_WIDTH+LOCK_ZONE_LEFT)*cptx,
+                                LOCK_ZONE_TOP+(PUZZLE_HEIGHT+LOCK_ZONE_TOP)*cpty,
+                                IMAGE_WIDTH+LOCK_ZONE_LEFT+LOCK_ZONE_LEFT + PUZZLE_WIDTH+(PUZZLE_WIDTH+LOCK_ZONE_LEFT)*cptx,
+                                LOCK_ZONE_TOP + PUZZLE_HEIGHT+(PUZZLE_HEIGHT+LOCK_ZONE_TOP)*cpty);
+                        cptx++;
+                        nbPiecesRestantes--;
+                    }
                  }
             }
     }
@@ -169,7 +196,7 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
         if (puzzle.isBackgroundTextureOn()) {
             backgroundImage.draw(canvas);
         }
-        canvas.drawRect(LOCK_ZONE_LEFT, LOCK_ZONE_TOP, IMAGE_WIDTH, IMAGE_HEIGHT, framePaint);
+        canvas.drawRect(LOCK_ZONE_LEFT, LOCK_ZONE_TOP, LOCK_ZONE_LEFT+IMAGE_WIDTH, LOCK_ZONE_TOP+IMAGE_HEIGHT, framePaint);
 
         for (int bmd = 0; bmd < scaledSurfacePuzzlePieces.length; bmd++) {
             if (puzzle.isPieceLocked(bmd)) {
