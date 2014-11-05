@@ -16,9 +16,13 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
     private int found = -1;
 
     /** Puzzle and Canvas **/
+    private int IMAGE_WIDTH;
+    private int IMAGE_HEIGHT;
     private int MAX_PUZZLE_PIECE_SIZE = 100; //Fixe le maximum des tailles de pices modifiables dans config
-    private int LOCK_ZONE_LEFT = 200; //Décalage de l'image en x
-    private int LOCK_ZONE_TOP = 200; //Decalage de l'image en y
+    private int PUZZLE_WIDTH = 150;
+    private int PUZZLE_HEIGHT = 75;
+    private int LOCK_ZONE_LEFT = 25; //Décalage de l'image en x
+    private int LOCK_ZONE_TOP = 25; //Decalage de l'image en y
 
     private int NB_PIECES_TO_REPLACE = 5;
 
@@ -37,6 +41,14 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
         gameThread = new PuzzleThread(getHolder(), context, this);
 
         setFocusable(true);
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        IMAGE_WIDTH = size.x *2/3 - 50;
+        IMAGE_HEIGHT= size.y - 100;
+
     }
 
 
@@ -78,6 +90,11 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
         display.getSize(outSize);
 
         puzzle = jigsawPuzzle;
+
+
+        PUZZLE_WIDTH = IMAGE_WIDTH / puzzle.getPuzzleDimensions()[2];
+        PUZZLE_HEIGHT= IMAGE_HEIGHT/ puzzle.getPuzzleDimensions()[3];
+
         Random r = new Random();
 
         if (puzzle.isBackgroundTextureOn()) {
@@ -104,11 +121,12 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
             scaledSurfacePuzzlePieces[i] = new BitmapDrawable(originalPieces[i]);
 
             // Top left is (0,0) in Android canvas
-            int topLeftX = r.nextInt(outSize.x - MAX_PUZZLE_PIECE_SIZE); //Place les images au hasard en x et y
-            int topLeftY = r.nextInt(outSize.y - 2 * MAX_PUZZLE_PIECE_SIZE);
+            int topLeftX = r.nextInt(outSize.x - PUZZLE_WIDTH);      // MAX_PUZZLE_PIECE_SIZE); //Place les images au hasard en x et y
+            int topLeftY = r.nextInt(outSize.y - 2 * PUZZLE_HEIGHT); //MAX_PUZZLE_PIECE_SIZE);
 
             scaledSurfacePuzzlePieces[i].setBounds(topLeftX, topLeftY,
-                    topLeftX + MAX_PUZZLE_PIECE_SIZE, topLeftY + MAX_PUZZLE_PIECE_SIZE);//Mettre la bonne position ici pour chaque piece
+                    topLeftX + PUZZLE_WIDTH,    //MAX_PUZZLE_PIECE_SIZE,
+                    topLeftY + PUZZLE_HEIGHT); //MAX_PUZZLE_PIECE_SIZE);//Mettre la bonne position ici pour chaque piece
         }
         int cpt=0;
         int nbPieces = puzzle.getNbPieces();
@@ -117,24 +135,23 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
         int nbPiecesRestantes = NB_PIECES_TO_REPLACE;
 
 
-
             for (int w = 0; w < dimensions[2]; w++) {
                 for (int h = 0; h < dimensions[3]; h++) {
                     int targetPiece = positions[w][h];
 
                     scaledSurfaceTargetBounds[targetPiece] = new Rect(
-                            LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
+                            LOCK_ZONE_LEFT + w * PUZZLE_WIDTH,//MAX_PUZZLE_PIECE_SIZE,
+                            LOCK_ZONE_TOP + h * PUZZLE_HEIGHT,//MAX_PUZZLE_PIECE_SIZE,
+                            LOCK_ZONE_LEFT + w * PUZZLE_WIDTH + PUZZLE_WIDTH,  //MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
+                            LOCK_ZONE_TOP + h * PUZZLE_HEIGHT + PUZZLE_HEIGHT);//MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
 
                     if (cpt<nbPiecesFix) { // 5 pieces seront placées de façons aléatoire
                         if(r2.nextInt(2)==1 || nbPiecesRestantes==0) {
-                            scaledSurfacePuzzlePieces[targetPiece].setBounds(LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE,
-                                    LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE,
-                                    LOCK_ZONE_LEFT + w * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
-                                    LOCK_ZONE_TOP + h * MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
-
+                            scaledSurfacePuzzlePieces[targetPiece].setBounds(
+                                    LOCK_ZONE_LEFT + w * PUZZLE_WIDTH,//MAX_PUZZLE_PIECE_SIZE,
+                                    LOCK_ZONE_TOP + h * PUZZLE_HEIGHT,//MAX_PUZZLE_PIECE_SIZE,
+                                    LOCK_ZONE_LEFT + w * PUZZLE_WIDTH + PUZZLE_WIDTH,  //MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
+                                    LOCK_ZONE_TOP + h * PUZZLE_HEIGHT + PUZZLE_HEIGHT);//MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
                             cpt++;
                         } else nbPiecesRestantes--;
 
@@ -152,7 +169,7 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
         if (puzzle.isBackgroundTextureOn()) {
             backgroundImage.draw(canvas);
         }
-        canvas.drawRect(20, 20, 420, 320, framePaint);
+        canvas.drawRect(LOCK_ZONE_LEFT, LOCK_ZONE_TOP, IMAGE_WIDTH, IMAGE_HEIGHT, framePaint);
 
         for (int bmd = 0; bmd < scaledSurfacePuzzlePieces.length; bmd++) {
             if (puzzle.isPieceLocked(bmd)) {
@@ -205,10 +222,10 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                     } else {
                         Rect rect = scaledSurfacePuzzlePieces[found].copyBounds();
 
-                        rect.left = xPos - MAX_PUZZLE_PIECE_SIZE/2;
-                        rect.top = yPos - MAX_PUZZLE_PIECE_SIZE/2;
-                        rect.right = xPos + MAX_PUZZLE_PIECE_SIZE/2;
-                        rect.bottom = yPos + MAX_PUZZLE_PIECE_SIZE/2;
+                        rect.left = xPos - PUZZLE_WIDTH/2;//MAX_PUZZLE_PIECE_SIZE/2;
+                        rect.top = yPos - PUZZLE_HEIGHT/2;//MAX_PUZZLE_PIECE_SIZE/2;
+                        rect.right = xPos + PUZZLE_WIDTH/2;//MAX_PUZZLE_PIECE_SIZE/2;
+                        rect.bottom = yPos + PUZZLE_HEIGHT/2;//MAX_PUZZLE_PIECE_SIZE/2;
                         scaledSurfacePuzzlePieces[found].setBounds(rect);
 
                         // Trigger jigsaw piece event
