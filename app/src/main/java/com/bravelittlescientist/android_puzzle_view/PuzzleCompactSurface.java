@@ -261,7 +261,6 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                             builder.setPositiveButton("Quitter le puzzle", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-//                                    PuzzleActivity.this.finish();
                                     Intent i2 = new Intent(getContext(), LaunchActivity.class);
                                     getContext().startActivity(i2);
                                     System.exit(0);

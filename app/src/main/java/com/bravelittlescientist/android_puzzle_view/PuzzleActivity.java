@@ -1,6 +1,7 @@
 package com.bravelittlescientist.android_puzzle_view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class PuzzleActivity extends Activity {
@@ -27,7 +28,9 @@ public class PuzzleActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        puzzleSurface.getThread().pause();
+        Intent i2 = new Intent(this, LaunchActivity.class);
+        startActivity(i2);
+        System.exit(0);
     }
 
     @Override
