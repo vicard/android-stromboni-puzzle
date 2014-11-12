@@ -85,18 +85,6 @@ public final class ExampleJigsawConfigurations {
         frus.putString("w", null);
         frus.putString("h", null);
 
-        scores.putStringArray("top", new String[]{"Top1", "Top2", "Top3"});
-        scores.putInt("numTop", 20);
-        Bundle[] connected = new Bundle[2];
-        connected[0] = new Bundle();
-        connected[1] = new Bundle();
-        connected[0].putString("user","Arthur");
-        connected[0].putString("uid", "player5678-uid");
-        connected[0].putInt("score", 47);
-        connected[1].putString("user", "Thomas");
-        connected[1].putString("uid", "player9012-uid");
-        connected[1].putInt("score", 39);
-        scores.putParcelableArray("connected", connected);
 
         img.putString("img_url", "http://ics.uci.edu/~tdebeauv/rCAT/diablo_1MB.jpg");
         img.putInt("img_local", R.drawable.happy_kitten);

@@ -10,6 +10,7 @@ import android.view.View;
 
 public class LaunchActivity extends Activity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,12 @@ public class LaunchActivity extends Activity {
     public void launchPuzzle(View v) {
         Intent i = new Intent(this, PuzzleActivity.class);
         startActivity(i);
+        finish();
     }
 
+    @Override
+    protected void onDestroy() {
+        finish();
+        super.onDestroy();
+    }
 }

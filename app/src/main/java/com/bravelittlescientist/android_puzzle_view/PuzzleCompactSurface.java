@@ -264,10 +264,15 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
 //                                    PuzzleActivity.this.finish();
                                     Intent i2 = new Intent(getContext(), LaunchActivity.class);
                                     getContext().startActivity(i2);
+                                    System.exit(0);
+
+
+
                                 }
                             });
                             AlertDialog alertDialog = builder.create();
                             alertDialog.show();
+
                         }
                     } else {
                         Rect rect = scaledSurfacePuzzlePieces[found].copyBounds();
