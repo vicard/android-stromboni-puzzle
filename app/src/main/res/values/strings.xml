@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">android-puzzle-view</string>
     <string name="placeholder">Placeholder</string>
+    <string name="title_activity_launch">LaunchActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

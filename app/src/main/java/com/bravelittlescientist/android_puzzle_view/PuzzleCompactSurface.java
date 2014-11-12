@@ -1,6 +1,8 @@
 package com.bravelittlescientist.android_puzzle_view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.*;
@@ -238,16 +240,31 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                 if (found >= 0 && found < scaledSurfacePuzzlePieces.length && !puzzle.isPieceLocked(found)) {
                     // Lock into position...
                     if (scaledSurfaceTargetBounds[found].contains(xPos, yPos) ) {
-                        scaledSurfacePuzzlePieces[found].setBounds(scaledSurfaceTargetBounds[found]);
-                        puzzle.setPieceLocked(found, true);
+                            scaledSurfacePuzzlePieces[found].setBounds(scaledSurfaceTargetBounds[found]);
+                            puzzle.setPieceLocked(found, true);
 
-                        // Trigger jigsaw piece events
-                        puzzle.onJigsawEventPieceMoved(found,
-                                scaledSurfacePuzzlePieces[found].copyBounds().left,
-                                scaledSurfacePuzzlePieces[found].copyBounds().top);
-                        puzzle.onJigsawEventPieceDropped(found,
-                                scaledSurfacePuzzlePieces[found].copyBounds().left,
-                                scaledSurfacePuzzlePieces[found].copyBounds().top);
+                            // Trigger jigsaw piece events
+                            puzzle.onJigsawEventPieceMoved(found,
+                                    scaledSurfacePuzzlePieces[found].copyBounds().left,
+                                    scaledSurfacePuzzlePieces[found].copyBounds().top);
+                            puzzle.onJigsawEventPieceDropped(found,
+                                    scaledSurfacePuzzlePieces[found].copyBounds().left,
+                                    scaledSurfacePuzzlePieces[found].copyBounds().top);
+
+                        NB_PIECES_TO_REPLACE--;
+                        if (NB_PIECES_TO_REPLACE==0) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("VICTOIRE");
+                            builder.setMessage("Bravo, tu as finis le puzzle !");
+                            builder.setPositiveButton("Quitter le puzzle", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    PuzzleActivity.this.finish();
+                                }
+                            });
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        }
                     } else {
                         Rect rect = scaledSurfacePuzzlePieces[found].copyBounds();
 
