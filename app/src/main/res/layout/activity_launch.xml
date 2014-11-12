@@ -10,8 +10,10 @@
     android:onClick="launchPuzzle">
 
     <TextView
-        android:text="@string/hello_world"
+        android:text="PUZZLE ANDROID \n\n Clique pour commencer à jouer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"/>
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.bravelittlescientist.android_puzzle_view;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.*;
@@ -193,23 +194,24 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if (canvas!=null) {
+            canvas.drawColor(Color.BLACK);
 
-        canvas.drawColor(Color.BLACK);
-
-        if (puzzle.isBackgroundTextureOn()) {
-            backgroundImage.draw(canvas);
-        }
-        canvas.drawRect(LOCK_ZONE_LEFT, LOCK_ZONE_TOP, LOCK_ZONE_LEFT+IMAGE_WIDTH, LOCK_ZONE_TOP+IMAGE_HEIGHT, framePaint);
-
-        for (int bmd = 0; bmd < scaledSurfacePuzzlePieces.length; bmd++) {
-            if (puzzle.isPieceLocked(bmd)) {
-                scaledSurfacePuzzlePieces[bmd].draw(canvas);
+            if (puzzle.isBackgroundTextureOn()) {
+                backgroundImage.draw(canvas);
             }
-        }
+            canvas.drawRect(LOCK_ZONE_LEFT, LOCK_ZONE_TOP, LOCK_ZONE_LEFT + IMAGE_WIDTH, LOCK_ZONE_TOP + IMAGE_HEIGHT, framePaint);
 
-        for (int bmd = 0; bmd < scaledSurfacePuzzlePieces.length; bmd++) {
-            if (!puzzle.isPieceLocked(bmd)) {
-                scaledSurfacePuzzlePieces[bmd].draw(canvas);
+            for (int bmd = 0; bmd < scaledSurfacePuzzlePieces.length; bmd++) {
+                if (puzzle.isPieceLocked(bmd)) {
+                    scaledSurfacePuzzlePieces[bmd].draw(canvas);
+                }
+            }
+
+            for (int bmd = 0; bmd < scaledSurfacePuzzlePieces.length; bmd++) {
+                if (!puzzle.isPieceLocked(bmd)) {
+                    scaledSurfacePuzzlePieces[bmd].draw(canvas);
+                }
             }
         }
     }
@@ -260,6 +262,8 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
 //                                    PuzzleActivity.this.finish();
+                                    Intent i2 = new Intent(getContext(), LaunchActivity.class);
+                                    getContext().startActivity(i2);
                                 }
                             });
                             AlertDialog alertDialog = builder.create();
