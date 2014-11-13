@@ -21,11 +21,15 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
     /** Puzzle and Canvas **/
     private int IMAGE_WIDTH;
     private int IMAGE_HEIGHT;
-    private int MAX_PUZZLE_PIECE_SIZE = 100; //Fixe le maximum des tailles de pices modifiables dans config
     private int PUZZLE_WIDTH = 150;
     private int PUZZLE_HEIGHT = 75;
     private int LOCK_ZONE_LEFT = 25; //Décalage de l'image en x
     private int LOCK_ZONE_TOP = 25; //Decalage de l'image en y
+
+    private int leftInit=0;
+    private int topInit=0;
+    private int rightInit=100;
+    private int botInit=100;
 
     private int NB_PIECES_TO_REPLACE = 5;
 
@@ -124,12 +128,12 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
             scaledSurfacePuzzlePieces[i] = new BitmapDrawable(originalPieces[i]);
 
             // Top left is (0,0) in Android canvas
-            int topLeftX = r.nextInt(outSize.x - PUZZLE_WIDTH);      // MAX_PUZZLE_PIECE_SIZE); //Place les images au hasard en x et y
-            int topLeftY = r.nextInt(outSize.y - 2 * PUZZLE_HEIGHT); //MAX_PUZZLE_PIECE_SIZE);
+            int topLeftX = r.nextInt(outSize.x - PUZZLE_WIDTH);      //Place les images au hasard en x et y
+            int topLeftY = r.nextInt(outSize.y - 2 * PUZZLE_HEIGHT);
 
             scaledSurfacePuzzlePieces[i].setBounds(topLeftX, topLeftY,
-                    topLeftX + PUZZLE_WIDTH,    //MAX_PUZZLE_PIECE_SIZE,
-                    topLeftY + PUZZLE_HEIGHT); //MAX_PUZZLE_PIECE_SIZE);//Mettre la bonne position ici pour chaque piece
+                    topLeftX + PUZZLE_WIDTH,
+                    topLeftY + PUZZLE_HEIGHT); //Mettre la bonne position ici pour chaque piece
         }
         int cpt=0;
         int cptx=0;
@@ -145,18 +149,18 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                     int targetPiece = positions[w][h];
 
                     scaledSurfaceTargetBounds[targetPiece] = new Rect(
-                            LOCK_ZONE_LEFT + w * PUZZLE_WIDTH,//MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_TOP + h * PUZZLE_HEIGHT,//MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_LEFT + w * PUZZLE_WIDTH + PUZZLE_WIDTH,  //MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
-                            LOCK_ZONE_TOP + h * PUZZLE_HEIGHT + PUZZLE_HEIGHT);//MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
+                            LOCK_ZONE_LEFT + w * PUZZLE_WIDTH,
+                            LOCK_ZONE_TOP + h * PUZZLE_HEIGHT,
+                            LOCK_ZONE_LEFT + w * PUZZLE_WIDTH + PUZZLE_WIDTH,
+                            LOCK_ZONE_TOP + h * PUZZLE_HEIGHT + PUZZLE_HEIGHT);
 
                     if (cpt<nbPiecesFix) { // 5 pieces seront placées de façons aléatoire
                         if(r2.nextInt(2)==1 || nbPiecesRestantes==0) {
                             scaledSurfacePuzzlePieces[targetPiece].setBounds(
-                                    LOCK_ZONE_LEFT + w * PUZZLE_WIDTH,//MAX_PUZZLE_PIECE_SIZE,
-                                    LOCK_ZONE_TOP + h * PUZZLE_HEIGHT,//MAX_PUZZLE_PIECE_SIZE,
-                                    LOCK_ZONE_LEFT + w * PUZZLE_WIDTH + PUZZLE_WIDTH,  //MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE,
-                                    LOCK_ZONE_TOP + h * PUZZLE_HEIGHT + PUZZLE_HEIGHT);//MAX_PUZZLE_PIECE_SIZE + MAX_PUZZLE_PIECE_SIZE);
+                                    LOCK_ZONE_LEFT + w * PUZZLE_WIDTH,
+                                    LOCK_ZONE_TOP + h * PUZZLE_HEIGHT,
+                                    LOCK_ZONE_LEFT + w * PUZZLE_WIDTH + PUZZLE_WIDTH,
+                                    LOCK_ZONE_TOP + h * PUZZLE_HEIGHT + PUZZLE_HEIGHT);
                             puzzle.setPieceLocked(targetPiece, true);
                             cpt++;
                         } else{
@@ -229,6 +233,10 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
 
                     if (place.contains(xPos, yPos) && !puzzle.isPieceLocked(i)) {
                         found = i;
+                        leftInit = place.left;
+                        topInit = place.top;
+                        rightInit = place.right;
+                        botInit = place.bottom;
 
                         // Trigger puzzle piece picked up
                         puzzle.onJigsawEventPieceGrabbed(found, place.left, place.top);
@@ -276,10 +284,10 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                     } else {
                         Rect rect = scaledSurfacePuzzlePieces[found].copyBounds();
 
-                        rect.left = xPos - PUZZLE_WIDTH/2;//MAX_PUZZLE_PIECE_SIZE/2;
-                        rect.top = yPos - PUZZLE_HEIGHT/2;//MAX_PUZZLE_PIECE_SIZE/2;
-                        rect.right = xPos + PUZZLE_WIDTH/2;//MAX_PUZZLE_PIECE_SIZE/2;
-                        rect.bottom = yPos + PUZZLE_HEIGHT/2;//MAX_PUZZLE_PIECE_SIZE/2;
+                        rect.left = xPos - PUZZLE_WIDTH/2;
+                        rect.top = yPos - PUZZLE_HEIGHT/2;
+                        rect.right = xPos + PUZZLE_WIDTH/2;
+                        rect.bottom = yPos + PUZZLE_HEIGHT/2;
                         scaledSurfacePuzzlePieces[found].setBounds(rect);
 
                         // Trigger jigsaw piece event
@@ -292,6 +300,15 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                 // Trigger jigsaw piece event
                 if (found >= 0 && found < scaledSurfacePuzzlePieces.length) {
                     puzzle.onJigsawEventPieceDropped(found, xPos, yPos);
+
+                    if (!puzzle.isPieceLocked(found)) {
+                        Rect rect = scaledSurfacePuzzlePieces[found].copyBounds();
+
+                        rect.left = leftInit;
+                        rect.top = topInit;
+                        rect.right = rightInit;
+                        rect.bottom = botInit;
+                        scaledSurfacePuzzlePieces[found].setBounds(rect);                    }
                 }
                 found = -1;
                 break;
