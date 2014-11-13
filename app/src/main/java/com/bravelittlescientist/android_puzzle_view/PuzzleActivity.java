@@ -3,6 +3,7 @@ package com.bravelittlescientist.android_puzzle_view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 public class PuzzleActivity extends Activity {
 
@@ -28,9 +29,20 @@ public class PuzzleActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        Intent i2 = new Intent(this, LaunchActivity.class);
-        startActivity(i2);
-        System.exit(0);
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent i2 = new Intent(this, LaunchActivity.class);
+            startActivity(i2);
+            System.exit(0);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -43,5 +55,6 @@ public class PuzzleActivity extends Activity {
     protected void onDestroy() {
 
         super.onDestroy();
+
     }
 }

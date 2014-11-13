@@ -11,9 +11,12 @@
 
     <TextView
         android:text="PUZZLE ANDROID \n\n Clique pour commencer à jouer"
+        android:textColor="@android:color/secondary_text_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="30sp"
+        />
 
 </RelativeLayout>
