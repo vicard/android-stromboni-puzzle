@@ -42,7 +42,14 @@ public class PuzzleActivity extends Activity {
             System.exit(0);
             return true;
         }
+
         return false;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.exit(0);
     }
 
     @Override

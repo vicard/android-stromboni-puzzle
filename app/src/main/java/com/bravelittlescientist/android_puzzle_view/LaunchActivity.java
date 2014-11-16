@@ -18,7 +18,8 @@ public class LaunchActivity extends Activity {
     }
 
     public void launchPuzzle(View v) {
-        Intent i = new Intent(this, PuzzleActivity.class);
+       // Intent i = new Intent(this, PuzzleActivity.class);
+        Intent i = new Intent(this, FileExplore.class);
         startActivity(i);
         finish();
     }
