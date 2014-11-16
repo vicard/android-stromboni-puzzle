@@ -271,7 +271,12 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                             builder.setTitle("VICTOIRE");
                             builder.setMessage("Bravo, tu as finis le puzzle !");
                             String audio;
-                            if(puzzle.getChosenFile().compareTo("/storage/emulated/0/Puzzle/cheval.jpg")==0){
+
+                            /* TO DO*/
+                            /* Pour les trois trucs de base, utilise le fichier R.raw.* pour importe les sons.
+                             * Normalement tu peux virer le setData et le prepare au dessous et utiliser la méthode mediaPlayer.create(truc,truc) */
+                            /* FIN TO DO*/
+                             if(puzzle.getChosenFile().compareTo("/storage/emulated/0/Puzzle/cheval.jpg")==0){
                                 audio = "/storage/emulated/0/Puzzle/Audio/cheval.mp3";
                             }
                             else if(puzzle.getChosenFile().compareTo("/storage/emulated/0/Puzzle/chat.jpg")==0){
