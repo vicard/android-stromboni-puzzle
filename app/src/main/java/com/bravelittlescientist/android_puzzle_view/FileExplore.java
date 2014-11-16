@@ -30,7 +30,7 @@ public class FileExplore extends Activity {
     private Boolean firstLvl = true;
     private static final String TAG = "F_PATH";
     private Item[] fileList;
-    private File path = new File(Environment.getExternalStorageDirectory()+"/Puzzle");
+    private File path;
     private String chosenFile;
     private static final int DIALOG_LOAD_FILE = 1000;
     ListAdapter adapter;
@@ -38,6 +38,10 @@ public class FileExplore extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        path = new File(Environment.getExternalStorageDirectory() + "/Puzzle");
+        if (!path.exists()){
+            path = new File(Environment.getExternalStorageDirectory() + "");
+        }
         loadFileList();
         showDialog(DIALOG_LOAD_FILE);
         Log.d(TAG, path.getAbsolutePath());
@@ -126,7 +130,7 @@ public class FileExplore extends Activity {
         }
         switch (id) {
             case DIALOG_LOAD_FILE:
-                builder.setTitle("Choose your file");
+                builder.setTitle("Choix de l'image");
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -181,6 +185,6 @@ public class FileExplore extends Activity {
     }
 
     public String getChosenFile(){
-        return chosenFile;
+        return path.getAbsolutePath()+ "/" +chosenFile;
     }
 }

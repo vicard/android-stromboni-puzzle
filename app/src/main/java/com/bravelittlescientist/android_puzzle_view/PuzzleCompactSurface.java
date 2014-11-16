@@ -6,9 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.view.*;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.Callback {
@@ -39,6 +41,8 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
 
     private BitmapDrawable backgroundImage;
     private Paint framePaint;
+
+    private MediaPlayer mediaPlayer;
 
     public PuzzleCompactSurface(Context context) {
         super(context);
@@ -269,6 +273,17 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                             builder.setPositiveButton("Quitter le puzzle", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                    String PATH_TO_FILE = "/storage/emulated/0/Puzzle/Audio/cheval.mp3";
+                                    mediaPlayer = new  MediaPlayer();
+                                    try {
+                                        mediaPlayer.setDataSource(PATH_TO_FILE);
+                                        mediaPlayer.prepare();
+                                        mediaPlayer.start();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+
+
                                     Intent i2 = new Intent(getContext(), LaunchActivity.class);
                                     getContext().startActivity(i2);
                                     System.exit(0);

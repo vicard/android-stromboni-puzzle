@@ -71,7 +71,7 @@ public class JigsawPuzzle {
        // Bitmap decodedPuzzleResource = decodePuzzleBitmapFromResource(
               //  res, resourceId, targetWidth, targetHeight);
 
-        File imgFile = new  File(Environment.getExternalStorageDirectory() + "/Puzzle/" + this.chosenFile.toString());
+        File imgFile = new  File(this.chosenFile.toString());
 
         Bitmap decodedPuzzleResource = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
 
