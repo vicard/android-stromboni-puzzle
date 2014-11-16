@@ -273,6 +273,10 @@ public class JigsawPuzzle {
         }
     }
 
+    public String getChosenFile(){
+        return chosenFile;
+    }
+
     /** Jigsaw Puzzle Message Handlers - Probably Override **/
     public void onJigsawEventPieceGrabbed (int index, int topLeftX, int topLeftY) {
 

@@ -2,10 +2,13 @@ package com.bravelittlescientist.android_puzzle_view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.io.IOException;
 
 
 public class LaunchActivity extends Activity {

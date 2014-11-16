@@ -24,6 +24,7 @@ public class PuzzleActivity extends Activity {
         puzzleSurface.setPuzzle(jigsawPuzzle);
 
         setContentView(puzzleSurface);
+
     }
 
     @Override

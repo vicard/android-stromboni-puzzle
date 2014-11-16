@@ -270,26 +270,30 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("VICTOIRE");
                             builder.setMessage("Bravo, tu as finis le puzzle !");
+                            String audio;
+                            if(puzzle.getChosenFile().compareTo("/storage/emulated/0/Puzzle/cheval.jpg")==0){
+                                audio = "/storage/emulated/0/Puzzle/Audio/cheval.mp3";
+                            }
+                            else if(puzzle.getChosenFile().compareTo("/storage/emulated/0/Puzzle/chat.jpg")==0){
+                                audio = "/storage/emulated/0/Puzzle/Audio/chat.mp3";
+                            }
+                            else {
+                                audio = "/storage/emulated/0/Puzzle/Audio/applaudissements.mp3";
+                            }
+                            mediaPlayer = new  MediaPlayer();
+                            try {
+                                mediaPlayer.setDataSource(audio);
+                                mediaPlayer.prepare();
+                                mediaPlayer.start();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             builder.setPositiveButton("Quitter le puzzle", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    String PATH_TO_FILE = "/storage/emulated/0/Puzzle/Audio/cheval.mp3";
-                                    mediaPlayer = new  MediaPlayer();
-                                    try {
-                                        mediaPlayer.setDataSource(PATH_TO_FILE);
-                                        mediaPlayer.prepare();
-                                        mediaPlayer.start();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-
-
                                     Intent i2 = new Intent(getContext(), LaunchActivity.class);
                                     getContext().startActivity(i2);
                                     System.exit(0);
-
-
-
                                 }
                             });
                             AlertDialog alertDialog = builder.create();
