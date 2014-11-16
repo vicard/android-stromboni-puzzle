@@ -5,6 +5,10 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
+
+
+import java.io.File;
 
 public class JigsawPuzzle {
 
@@ -27,6 +31,8 @@ public class JigsawPuzzle {
     private int[][] puzzlePieceTargetPositions;
     private boolean[] pieceLocked;
 
+    private String chosenFile;
+
     private Context mContext;
 
     /**
@@ -47,21 +53,28 @@ public class JigsawPuzzle {
      * @param context
      * @param configuration
      */
-    public JigsawPuzzle(Context context, Bundle configuration) {
+    public JigsawPuzzle(Context context, Bundle configuration,String chosenFile) {
         config = configuration;
         mContext = context;
-
+        this.chosenFile=chosenFile;
         loadPuzzleResources(mContext.getResources(),
                 config.getBundle("img").getInt("img_local"), 400, 300);
         loadPuzzleConfiguration();
+
+
     }
 
     public void loadPuzzleResources (Resources res, int resourceId, long targetWidth, long targetHeight) {
 
         backgroundTexture = decodePuzzleBitmapFromResource(res, R.drawable.background, 800, 800);
 
-        Bitmap decodedPuzzleResource = decodePuzzleBitmapFromResource(
-                res, resourceId, targetWidth, targetHeight);
+       // Bitmap decodedPuzzleResource = decodePuzzleBitmapFromResource(
+              //  res, resourceId, targetWidth, targetHeight);
+
+        File imgFile = new  File(Environment.getExternalStorageDirectory() + "/Puzzle/" + this.chosenFile.toString());
+
+        Bitmap decodedPuzzleResource = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
 
         puzzleResult = decodedPuzzleResource;
         puzzleXDimension = decodedPuzzleResource.getWidth();

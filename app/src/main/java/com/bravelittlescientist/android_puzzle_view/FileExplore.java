@@ -165,6 +165,9 @@ public class FileExplore extends Activity {
                         else {
                         // Perform action with file picked
                             Intent i = new Intent(getBaseContext(), PuzzleActivity.class);
+                            Bundle extras = new Bundle();
+                            extras.putString("chosenFile",getChosenFile());
+                            i.putExtras(extras);
                             startActivity(i);
                             finish();
 
@@ -177,5 +180,7 @@ public class FileExplore extends Activity {
         return dialog;
     }
 
-
+    public String getChosenFile(){
+        return chosenFile;
+    }
 }
