@@ -276,27 +276,29 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                             /* Pour les trois trucs de base, utilise le fichier R.raw.* pour importe les sons.
                              * Normalement tu peux virer le setData et le prepare au dessous et utiliser la méthode mediaPlayer.create(truc,truc) */
                             /* FIN TO DO*/
-                             if(puzzle.getChosenFile().compareTo("/storage/emulated/0/Puzzle/cheval.jpg")==0){
-                                audio = "/storage/emulated/0/Puzzle/Audio/cheval.mp3";
+                            mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.applaudissements);
+
+
+                            if (puzzle.getChosenFile().compareTo("chat.jpg")==0) {
+                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.chat);
                             }
-                            else if(puzzle.getChosenFile().compareTo("/storage/emulated/0/Puzzle/chat.jpg")==0){
-                                audio = "/storage/emulated/0/Puzzle/Audio/chat.mp3";
+                            else  if (puzzle.getChosenFile().toString().compareTo("cheval.jpg")==0) {
+                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.cheval);
+                            }
+                            else  if (puzzle.getChosenFile().toString().compareTo("chien.jpg")==0) {
+                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.applaudissements);
+                            }
+                            else  if (puzzle.getChosenFile().toString().compareTo("oiseau.jpg")==0) {
+                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.applaudissements);
                             }
                             else {
-                                audio = "/storage/emulated/0/Puzzle/Audio/applaudissements.mp3";
+                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.applaudissements);
                             }
-                            mediaPlayer = new  MediaPlayer();
-                            try {
-                                mediaPlayer.setDataSource(audio);
-                                mediaPlayer.prepare();
-                                mediaPlayer.start();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            mediaPlayer.start();
                             builder.setPositiveButton("Quitter le puzzle", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent i2 = new Intent(getContext(), LaunchActivity.class);
+                                    Intent i2 = new Intent(getContext(), Game_menu.class);
                                     getContext().startActivity(i2);
                                     System.exit(0);
                                 }

@@ -19,6 +19,8 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:textSize="40sp"
-        />
+        android:textColorHighlight="@android:color/holo_orange_dark"
+        android:textIsSelectable="false"
+        android:textStyle="bold" />
 
 </RelativeLayout>

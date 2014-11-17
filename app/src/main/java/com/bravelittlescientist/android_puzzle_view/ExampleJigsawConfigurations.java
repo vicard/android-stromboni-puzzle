@@ -34,7 +34,7 @@ public final class ExampleJigsawConfigurations {
 
 
         img.putString("img_url", "http://ics.uci.edu/~tdebeauv/rCAT/diablo_1MB.jpg");
-        img.putInt("img_local", R.drawable.kitten_large);
+        img.putInt("img_local", R.drawable.chien);
         img.putInt("img_w", 1600);
         img.putInt("img_h", 1200);
 

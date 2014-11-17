@@ -67,15 +67,25 @@ public class JigsawPuzzle {
     public void loadPuzzleResources (Resources res, int resourceId, long targetWidth, long targetHeight) {
 
         backgroundTexture = decodePuzzleBitmapFromResource(res, R.drawable.background, 800, 800);
-
+        Bitmap decodedPuzzleResource;
        // Bitmap decodedPuzzleResource = decodePuzzleBitmapFromResource(
               //  res, resourceId, targetWidth, targetHeight);
-
-        File imgFile = new  File(this.chosenFile.toString());
-
-        Bitmap decodedPuzzleResource = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
-
+        if (this.chosenFile.toString().compareTo("chat.jpg")==0) {
+           decodedPuzzleResource = BitmapFactory.decodeResource(res, R.drawable.happy_kitten);
+        }
+        else  if (this.chosenFile.toString().compareTo("cheval.jpg")==0) {
+            decodedPuzzleResource = BitmapFactory.decodeResource(res, R.drawable.cheval);
+        }
+        else  if (this.chosenFile.toString().compareTo("chien.jpg")==0) {
+            decodedPuzzleResource = BitmapFactory.decodeResource(res, R.drawable.chien);
+        }
+        else  if (this.chosenFile.toString().compareTo("oiseau.jpg")==0) {
+            decodedPuzzleResource = BitmapFactory.decodeResource(res, R.drawable.happy_kitten);
+        }
+        else {
+            File imgFile = new File(this.chosenFile.toString());
+            decodedPuzzleResource = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+        }
         puzzleResult = decodedPuzzleResource;
         puzzleXDimension = decodedPuzzleResource.getWidth();
         puzzleYDimension = decodedPuzzleResource.getHeight();

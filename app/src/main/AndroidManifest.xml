@@ -6,9 +6,9 @@
 
     <uses-sdk android:minSdkVersion="14" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application android:label="@string/app_name" >
         <activity
@@ -17,19 +17,24 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        <activity android:name=".FileExplore"
-            android:label="@string/choice_img">
+        <activity
+            android:name="com.bravelittlescientist.android_puzzle_view.FileExplore"
+            android:label="@string/choice_img" >
         </activity>
         <activity
             android:name="com.bravelittlescientist.android_puzzle_view.LaunchActivity"
             android:label="@string/title_activity_launch"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.bravelittlescientist.android_puzzle_view.Game_menu"
+            android:label="@string/title_activity_game_menu" >
         </activity>
     </application>
 

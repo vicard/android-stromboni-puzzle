@@ -21,28 +21,38 @@ public final class R {
     public static final class drawable {
         public static final int background=0x7f020000;
         public static final int backgroundlaunch=0x7f020001;
-        public static final int darkwood=0x7f020002;
-        public static final int directory_icon=0x7f020003;
-        public static final int directory_up=0x7f020004;
-        public static final int file_icon=0x7f020005;
-        public static final int happy_kitten=0x7f020006;
-        public static final int icon=0x7f020007;
-        public static final int kitten_large=0x7f020008;
+        public static final int cheval=0x7f020002;
+        public static final int chien=0x7f020003;
+        public static final int darkwood=0x7f020004;
+        public static final int directory_icon=0x7f020005;
+        public static final int directory_up=0x7f020006;
+        public static final int file_icon=0x7f020007;
+        public static final int happy_kitten=0x7f020008;
+        public static final int icon=0x7f020009;
     }
     public static final class id {
-        public static final int action_settings=0x7f090001;
-        public static final int puzzle_surface=0x7f090000;
+        public static final int action_settings=0x7f090006;
+        public static final int button=0x7f090000;
+        public static final int button2=0x7f090001;
+        public static final int button3=0x7f090002;
+        public static final int button4=0x7f090004;
+        public static final int button5=0x7f090003;
+        public static final int puzzle_surface=0x7f090005;
     }
     public static final class layout {
-        public static final int activity_launch=0x7f030000;
-        public static final int main=0x7f030001;
-        public static final int puzzle_layout=0x7f030002;
+        public static final int activity_game_menu=0x7f030000;
+        public static final int activity_launch=0x7f030001;
+        public static final int main=0x7f030002;
+        public static final int puzzle_layout=0x7f030003;
     }
     public static final class menu {
-        public static final int launch=0x7f080000;
+        public static final int game_menu=0x7f080000;
+        public static final int launch=0x7f080001;
     }
     public static final class raw {
         public static final int applaudissements=0x7f050000;
+        public static final int chat=0x7f050001;
+        public static final int cheval=0x7f050002;
     }
     public static final class string {
         public static final int action_settings=0x7f070000;
@@ -51,6 +61,7 @@ public final class R {
         public static final int hello=0x7f070003;
         public static final int hello_world=0x7f070004;
         public static final int placeholder=0x7f070005;
-        public static final int title_activity_launch=0x7f070006;
+        public static final int title_activity_game_menu=0x7f070006;
+        public static final int title_activity_launch=0x7f070007;
     }
 }
