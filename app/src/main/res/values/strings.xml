@@ -8,6 +8,6 @@
     <string name="action_settings">Settings</string>
     <string name="choice_img">Choix de l\'image</string>
     <string name="hello">Hello World, FileExplore!</string>
-    <string name="title_activity_game_menu">Game_menu</string>
+    <string name="title_activity_game_menu">Menu Principal</string>
 
 </resources>

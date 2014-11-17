@@ -34,7 +34,8 @@
         </activity>
         <activity
             android:name="com.bravelittlescientist.android_puzzle_view.Game_menu"
-            android:label="@string/title_activity_game_menu" >
+            android:label="@string/title_activity_game_menu"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
