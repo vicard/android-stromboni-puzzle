@@ -33,7 +33,7 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
     private int rightInit=100;
     private int botInit=100;
 
-    private int NB_PIECES_TO_REPLACE = 5;
+    private int NB_PIECES_TO_REPLACE = 2;
 
     private JigsawPuzzle puzzle;
     private BitmapDrawable[] scaledSurfacePuzzlePieces;
@@ -59,6 +59,7 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
         display.getSize(size);
         IMAGE_WIDTH = size.x *2/3 - 50;
         IMAGE_HEIGHT= size.y - 100;
+
 
     }
 
@@ -101,6 +102,7 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
         display.getSize(outSize);
 
         puzzle = jigsawPuzzle;
+        NB_PIECES_TO_REPLACE=puzzle.getGameDifficulty();
 
 
         PUZZLE_WIDTH = IMAGE_WIDTH / puzzle.getPuzzleDimensions()[2];

@@ -171,6 +171,7 @@ public class FileExplore extends Activity {
                             Intent i = new Intent(getBaseContext(), PuzzleActivity.class);
                             Bundle extras = new Bundle();
                             extras.putString("chosenFile",getChosenFile());
+                            extras.putString("gameDifficulty",getIntent().getExtras().getString("gameDifficulty"));
                             i.putExtras(extras);
                             startActivity(i);
                             finish();

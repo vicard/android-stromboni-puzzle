@@ -55,7 +55,16 @@
         android:layout_height="wrap_content"
         android:text="Personnel"
         android:id="@+id/button5"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:onClick="launchChoice"/>
+        android:onClick="launchChoice"
+        android:layout_alignTop="@+id/button2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Difficulte"
+        android:id="@+id/button6"
+        android:layout_alignTop="@+id/button3"
+        android:layout_alignRight="@+id/button5"
+        android:onClick="launchDifficulte"/>
 </RelativeLayout>

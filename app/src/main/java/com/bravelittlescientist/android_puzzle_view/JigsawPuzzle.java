@@ -33,6 +33,17 @@ public class JigsawPuzzle {
 
     private String chosenFile;
 
+    public int getGameDifficulty() {
+        if (gameDifficulty.compareTo("2")==0) return 2;
+        else if (gameDifficulty.compareTo("3")==0) return 3;
+        else if (gameDifficulty.compareTo("4")==0) return 4;
+        else if (gameDifficulty.compareTo("5")==0) return 5;
+        else if (gameDifficulty.compareTo("6")==0) return 6;
+        else return 2;
+    }
+
+    private String gameDifficulty;
+
     private Context mContext;
 
     /**
@@ -53,10 +64,11 @@ public class JigsawPuzzle {
      * @param context
      * @param configuration
      */
-    public JigsawPuzzle(Context context, Bundle configuration,String chosenFile) {
+    public JigsawPuzzle(Context context, Bundle configuration,String chosenFile,String gameDifficulty) {
         config = configuration;
         mContext = context;
         this.chosenFile=chosenFile;
+        this.gameDifficulty=gameDifficulty;
         loadPuzzleResources(mContext.getResources(),
                 config.getBundle("img").getInt("img_local"), 400, 300);
         loadPuzzleConfiguration();

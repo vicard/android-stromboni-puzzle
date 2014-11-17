@@ -20,7 +20,7 @@ public class PuzzleActivity extends Activity {
         Bundle config = ExampleJigsawConfigurations.getRcatKittenExample();
 
         puzzleSurface = new PuzzleCompactSurface(this);
-        JigsawPuzzle jigsawPuzzle = new JigsawPuzzle(this, config,getIntent().getExtras().getString("chosenFile"));
+        JigsawPuzzle jigsawPuzzle = new JigsawPuzzle(this, config,getIntent().getExtras().getString("chosenFile"),getIntent().getExtras().getString("gameDifficulty"));
         puzzleSurface.setPuzzle(jigsawPuzzle);
 
         setContentView(puzzleSurface);
