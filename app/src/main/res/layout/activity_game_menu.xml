@@ -76,11 +76,11 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="Difficulte"
         android:id="@+id/button6"
-        android:onClick="launchDifficulte"
+        android:onClick="launchCanard"
         android:layout_weight="0.3"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:background="@drawable/canard_miniature"/>
      </LinearLayout>
 </LinearLayout>
 

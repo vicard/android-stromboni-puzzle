@@ -176,7 +176,7 @@ public class Game_menu extends Activity {
 
     }
 
-    public void launchDifficulte(View v) {
+    public void launchCanard(View v) {
         final CharSequence myList[] = { "2", "3", "4","5","6" };
         // Intent i = new Intent(this, PuzzleActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -191,7 +191,14 @@ public class Game_menu extends Activity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(getBaseContext(), PuzzleActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("chosenFile","canard.jpg");
+                extras.putString("gameDifficulty",getGameDifficulty());
+                i.putExtras(extras);
+                startActivity(i);
 
+                finish();
             }
         });
 

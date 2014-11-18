@@ -94,6 +94,9 @@ public class JigsawPuzzle {
         else  if (this.chosenFile.toString().compareTo("elephant.jpg")==0) {
             decodedPuzzleResource = BitmapFactory.decodeResource(res, R.drawable.elephant);
         }
+        else  if (this.chosenFile.toString().compareTo("canard.jpg")==0) {
+            decodedPuzzleResource = BitmapFactory.decodeResource(res, R.drawable.canard);
+        }
         else {
             File imgFile = new File(this.chosenFile.toString());
             decodedPuzzleResource = BitmapFactory.decodeFile(imgFile.getAbsolutePath());

@@ -288,10 +288,13 @@ public class PuzzleCompactSurface extends SurfaceView implements SurfaceHolder.C
                                 mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.cheval);
                             }
                             else  if (puzzle.getChosenFile().toString().compareTo("chien.jpg")==0) {
-                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.applaudissements);
+                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.chien);
                             }
                             else  if (puzzle.getChosenFile().toString().compareTo("elephant.jpg")==0) {
-                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.applaudissements);
+                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.elephant);
+                            }
+                            else  if (puzzle.getChosenFile().toString().compareTo("canard.jpg")==0) {
+                                mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.canard);
                             }
                             else {
                                 mediaPlayer = new  MediaPlayer().create(getContext(), R.raw.applaudissements);
