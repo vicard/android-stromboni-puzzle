@@ -35,50 +35,145 @@ public class Game_menu extends Activity {
 
 
     public void launchChat(View v){
-        Intent i = new Intent(this, PuzzleActivity.class);
-        Bundle extras = new Bundle();
-        extras.putString("chosenFile","chat.jpg");
-        extras.putString("gameDifficulty",getGameDifficulty());
-        i.putExtras(extras);
-        startActivity(i);
-        finish();
+        final CharSequence myList[] = { "2", "3", "4","5","6" };
+        // Intent i = new Intent(this, PuzzleActivity.class);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+                setGameDifficulty(myList[arg1].toString());
+
+            }
+        });
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(getBaseContext(), PuzzleActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("chosenFile","chat.jpg");
+                extras.putString("gameDifficulty",getGameDifficulty());
+                i.putExtras(extras);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        builder.show();
+
     }
     public void launchCheval(View v){
-        Intent i = new Intent(this, PuzzleActivity.class);
-        Bundle extras = new Bundle();
-        extras.putString("chosenFile","cheval.jpg");
-        extras.putString("gameDifficulty",getGameDifficulty());
-        i.putExtras(extras);
-        startActivity(i);
-        finish();
+        final CharSequence myList[] = { "2", "3", "4","5","6" };
+        // Intent i = new Intent(this, PuzzleActivity.class);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+                setGameDifficulty(myList[arg1].toString());
+
+            }
+        });
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(getBaseContext(), PuzzleActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("chosenFile","cheval.jpg");
+                extras.putString("gameDifficulty",getGameDifficulty());
+                i.putExtras(extras);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        builder.show();
+
     }
     public void launchChien(View v){
-        Intent i = new Intent(this, PuzzleActivity.class);
-        Bundle extras = new Bundle();
-        extras.putString("chosenFile","chien.jpg");
-        extras.putString("gameDifficulty",getGameDifficulty());
-        i.putExtras(extras);
-        startActivity(i);
-        finish();
+        final CharSequence myList[] = { "2", "3", "4","5","6" };
+        // Intent i = new Intent(this, PuzzleActivity.class);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+                setGameDifficulty(myList[arg1].toString());
+
+            }
+        });
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(getBaseContext(), PuzzleActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("chosenFile","chien.jpg");
+                extras.putString("gameDifficulty",getGameDifficulty());
+                i.putExtras(extras);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        builder.show();
+
     }
     public void launchOiseau(View v){
-        Intent i = new Intent(this, PuzzleActivity.class);
-        Bundle extras = new Bundle();
-        extras.putString("chosenFile","oiseau.jpg");
-        extras.putString("gameDifficulty",getGameDifficulty());
-        i.putExtras(extras);
-        startActivity(i);
+        final CharSequence myList[] = { "2", "3", "4","5","6" };
+        // Intent i = new Intent(this, PuzzleActivity.class);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
 
-        finish();
+                setGameDifficulty(myList[arg1].toString());
+
+            }
+        });
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(getBaseContext(), PuzzleActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("chosenFile","elephant.jpg");
+                extras.putString("gameDifficulty",getGameDifficulty());
+                i.putExtras(extras);
+                startActivity(i);
+
+                finish();
+
+            }
+        });
+
+        builder.show();
+
     }
 
     public void launchChoice(View v) {
-        Intent i = new Intent(this, FileExplore.class);
-        Bundle extras = new Bundle();
-        extras.putString("gameDifficulty",getGameDifficulty());
-        i.putExtras(extras);
-        startActivity(i);
-        finish();
+        final CharSequence myList[] = { "2", "3", "4","5","6" };
+        // Intent i = new Intent(this, PuzzleActivity.class);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+                setGameDifficulty(myList[arg1].toString());
+
+            }
+        });
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(getBaseContext(), FileExplore.class);
+                Bundle extras = new Bundle();
+                extras.putString("gameDifficulty",getGameDifficulty());
+                i.putExtras(extras);
+                startActivity(i);
+                finish();
+            }
+        });
+        builder.show();
+
     }
 
     public void launchDifficulte(View v) {

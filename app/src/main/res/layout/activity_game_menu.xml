@@ -27,12 +27,13 @@
         android:onClick="launchChat"
         android:layout_weight="0.3"
         android:layout_margin="20dp"
+        android:background="@drawable/chat_miniature"
         />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="Chien"
+        android:background="@drawable/chien_miniature"
         android:id="@+id/button2"
         android:onClick="launchChien"
         android:layout_weight="0.3"
@@ -41,12 +42,11 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="Cheval"
         android:id="@+id/button3"
         android:onClick="launchCheval"
         android:layout_weight="0.3"
         android:layout_margin="20dp"
-        android:background="@drawable/cheval"/>
+        android:background="@drawable/cheval_miniature"/>
     </LinearLayout>
 
     <LinearLayout
@@ -57,7 +57,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="Oiseau"
+        android:background="@drawable/elephant_miniature"
         android:id="@+id/button4"
         android:onClick="launchOiseau"
         android:layout_weight="0.3"
