@@ -9,62 +9,79 @@
     tools:context="com.bravelittlescientist.android_puzzle_view.Game_menu"
     android:background="@drawable/backgroundlaunch">
 
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chat"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/button"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="66dp"
-        android:onClick="launchChat" />
+        android:onClick="launchChat"
+        android:layout_weight="0.3"
+        android:layout_margin="20dp"
+        />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:text="Chien"
         android:id="@+id/button2"
-        android:layout_above="@+id/button3"
-        android:layout_toRightOf="@+id/button5"
-        android:layout_marginLeft="49dp"
-        android:onClick="launchChien"/>
+        android:onClick="launchChien"
+        android:layout_weight="0.3"
+        android:layout_margin="20dp"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:text="Cheval"
         android:id="@+id/button3"
-        android:layout_below="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_marginTop="39dp"
-        android:onClick="launchCheval"/>
+        android:onClick="launchCheval"
+        android:layout_weight="0.3"
+        android:layout_margin="20dp"
+        android:background="@drawable/cheval"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:text="Oiseau"
         android:id="@+id/button4"
-        android:layout_alignTop="@+id/button3"
-        android:layout_alignLeft="@+id/button2"
-        android:onClick="launchOiseau"/>
+        android:onClick="launchOiseau"
+        android:layout_weight="0.3"
+        android:layout_margin="20dp"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:text="Personnel"
         android:id="@+id/button5"
         android:onClick="launchChoice"
-        android:layout_alignTop="@+id/button2"
-        android:layout_centerHorizontal="true" />
+        android:layout_weight="0.3"
+        android:layout_margin="20dp"
+        />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:text="Difficulte"
         android:id="@+id/button6"
-        android:layout_alignTop="@+id/button3"
-        android:layout_alignRight="@+id/button5"
-        android:onClick="launchDifficulte"/>
+        android:onClick="launchDifficulte"
+        android:layout_weight="0.3"
+        android:layout_margin="20dp"/>
+     </LinearLayout>
+</LinearLayout>
+
 </RelativeLayout>

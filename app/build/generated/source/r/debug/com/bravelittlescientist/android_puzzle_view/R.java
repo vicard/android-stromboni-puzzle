@@ -35,8 +35,8 @@ public final class R {
         public static final int button=0x7f090000;
         public static final int button2=0x7f090001;
         public static final int button3=0x7f090002;
-        public static final int button4=0x7f090004;
-        public static final int button5=0x7f090003;
+        public static final int button4=0x7f090003;
+        public static final int button5=0x7f090004;
         public static final int button6=0x7f090005;
         public static final int puzzle_surface=0x7f090006;
     }
