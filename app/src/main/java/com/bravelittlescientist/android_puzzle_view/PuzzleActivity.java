@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+
 public class PuzzleActivity extends Activity {
 
     private PuzzleCompactSurface puzzleSurface;
@@ -41,6 +42,7 @@ public class PuzzleActivity extends Activity {
             Intent i2 = new Intent(this, LaunchActivity.class);
             startActivity(i2);
             System.exit(0);
+
             return true;
         }
 

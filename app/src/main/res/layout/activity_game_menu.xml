@@ -19,7 +19,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="84dp"
         android:layout_marginTop="66dp"
-        android:onClick="launchChat"/>
+        android:onClick="launchChat" />
 
     <Button
         android:layout_width="wrap_content"
