@@ -38,6 +38,7 @@ public class Game_menu extends Activity {
         final CharSequence myList[] = { "2", "3", "4","5","6" };
         // Intent i = new Intent(this, PuzzleActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choix du nombre de pièces");
         builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
 
@@ -66,6 +67,7 @@ public class Game_menu extends Activity {
         final CharSequence myList[] = { "2", "3", "4","5","6" };
         // Intent i = new Intent(this, PuzzleActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choix du nombre de pièces");
         builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
 
@@ -94,6 +96,7 @@ public class Game_menu extends Activity {
         final CharSequence myList[] = { "2", "3", "4","5","6" };
         // Intent i = new Intent(this, PuzzleActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choix du nombre de pièces");
         builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
 
@@ -122,6 +125,7 @@ public class Game_menu extends Activity {
         final CharSequence myList[] = { "2", "3", "4","5","6" };
         // Intent i = new Intent(this, PuzzleActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choix du nombre de pièces");
         builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
 
@@ -153,6 +157,7 @@ public class Game_menu extends Activity {
         final CharSequence myList[] = { "2", "3", "4","5","6" };
         // Intent i = new Intent(this, PuzzleActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choix du nombre de pièces");
         builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
 
@@ -178,8 +183,9 @@ public class Game_menu extends Activity {
 
     public void launchCanard(View v) {
         final CharSequence myList[] = { "2", "3", "4","5","6" };
-        // Intent i = new Intent(this, PuzzleActivity.class);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choix du nombre de pièces");
         builder.setSingleChoiceItems(myList,-1,new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
 
@@ -201,6 +207,8 @@ public class Game_menu extends Activity {
                 finish();
             }
         });
+
+
 
         builder.show();
     }
